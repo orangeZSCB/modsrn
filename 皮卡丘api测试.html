@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>网页示例</title>
+<link rel="stylesheet" type="text/css" href="./styles.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<div id="content">
+    <div id="centered-content">
+        <img id="image" src="./pikaqiu.png" alt="皮卡丘是Scratch界的主宰，没有之一！！！！！！">
+	<h1><p>膜拜皮卡丘</p></h1>
+        <h2><p id="counterText">已经有 <span id="counter">0</span> 个人膜拜</p></h2>
+        <button id="clickButton">点击膜拜</button>
+	<h3><p>Made by Orange with ❤</p></h3>
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+    // 初始加载计数器
+    loadCounter();
+
+    // 点击按钮事件
+    $("#clickButton").click(function(){
+        // 调用增加点击数的API
+        $.ajax({
+            url: "http://oj2.zsccodelnc.cn:22891/pikachu?type=plus",
+            method: "GET",
+            success: function(){
+                // 刷新计数器
+                loadCounter();
+            },
+            error: function(xhr, status, error){
+                console.error("API调用失败:", error);
+            }
+        });
+    });
+});
+
+// 加载计数器
+function loadCounter(){
+    $.ajax({
+        url: "http://oj2.zsccodelnc.cn:22891/pikachu?type=get",
+        method: "GET",
+        dataType: "json",
+        success: function(data){
+            // 更新计数器文字
+            $("#counter").text(data.counter);
+        },
+        error: function(xhr, status, error){
+            console.error("API调用失败:", error);
+        }
+    });
+}
+</script>
+
+</body>
+</html>
