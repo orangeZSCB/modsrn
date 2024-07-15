@@ -28,7 +28,7 @@ $(document).ready(function(){
     $("#clickButton").click(function(){
         // 调用增加点击数的API
         $.ajax({
-            url: "https://serinapi.rawsite.icu/pikachu?type=plus",
+            url: "http://oj2.zsccodelnc.cn:22891/pikachu?type=plus",
             method: "GET",
             success: function(){
                 // 刷新计数器
@@ -44,7 +44,7 @@ $(document).ready(function(){
 // 加载计数器
 function loadCounter(){
     $.ajax({
-        url: "https://serinapi.rawsite.icu/pikachu?type=get",
+        url: "http://oj2.zsccodelnc.cn:22891/pikachu?type=get",
         method: "GET",
         dataType: "json",
         success: function(data){
